@@ -1,0 +1,69 @@
+Problem: "Smart Order Processor"
+You're building a smart restaurant order processor. You'll be given:
+A menu in JSON format.
+A list of orders (each with item name and quantity).
+An async function that simulates preparing each item with delay.
+And some discount rules.
+
+
+You must:
+Handle async preparation of items using async/await and Promise.
+Use arrow functions and callbacks in different parts.
+Handle both reference and value issues while manipulating objects.
+Use if/else, for, forEach, map, etc.
+Deep copy the order object and don't mutate the original.
+Print final bill with prices and total (after discount if applicable).
+
+
+Input:
+Menu (JSON):
+const menu = {
+  "burger": { price: 5 },
+  "pizza": { price: 8 },
+  "salad": { price: 4 },
+  "pasta": { price: 7 },
+  "soda": { price: 2 }
+};
+Orders:
+const orders = [
+  { item: "pizza", quantity: 2 },
+  { item: "burger", quantity: 1 },
+  { item: "soda", quantity: 3 }
+];
+
+Requirements:
+Part 1: Deep Clone Orders
+Clone the orders array so original is unchanged.
+Do not mutate the original.
+
+Part 2: Process Orders with Async Item Prep
+Simulate preparing each order using a fake async function:
+const prepareItem = (item, time) => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(Prepared ${item}), time);
+  });
+};
+Use Promise.all or for-await-of to prepare all items.
+Prep time per item: quantity * 500ms.
+
+Part 3: Calculate Total and Apply Discounts
+Calculate total price from menu.
+If total > $20, apply a 10% discount.
+Print the final total.
+
+Part 4: Log Summary
+Output like:
+Prepared pizza
+Prepared pizza
+Prepared burger
+Prepared soda
+Prepared soda
+Prepared soda
+Total before discount: $27
+Discount applied: 10%
+Final Total: $24.3
+
+Bonus Rules to Practice:
+Use arrow functions for simple utilities.
+Use a callback function to log each item as it's prepared.
+Show usage of typeof, Array.isArray, Object.keys, etc.
