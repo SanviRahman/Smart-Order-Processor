@@ -31,3 +31,30 @@ const promise= (question:string):Promise<string>=>{
   return new Promise (resolve => readLine.question(question,resolve));
 };
 
+
+const prepareItem=(item:string,time:number):Promise<string> =>{
+  return new Promise (resolve=> {
+    setTimeout(()=>{
+      resolve(`${item} is ready!`);
+    },time);
+  });
+};
+
+
+
+const main = async()=>{
+  const order: Order[]=[];
+}
+
+
+const totalItems= parseInt(await ask ("How many items you want to order?"));
+
+for(let i=0; i<totalItems;i++)
+{
+  const item=await ask(`Enter item name:${i+1}`);
+  if(!menu[item]){
+    console.log("This item is not present in menu.Please try again!");
+    i--;
+    continue;
+  }
+}
