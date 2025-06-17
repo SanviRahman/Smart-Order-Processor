@@ -46,10 +46,10 @@ var menu = {
     "soda": { price: 2 }
 };
 //Show Menu
-console.log("Menu:");
+console.log("---------------Menu:--------------");
 var index = 1;
 for (var item in menu) {
-    console.log("".concat(index, ". ").concat(item, ": Price:").concat(menu[item].price));
+    console.log("".concat(index, ". ").concat(item, ": Price:").concat(menu[item].price, " TK"));
     index++;
 }
 //Get input from user
@@ -71,7 +71,7 @@ var prepareItem = function (item, time) {
 };
 //async arrow function
 var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalItem;
+    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalItem, discount, finalAmount;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
@@ -108,7 +108,7 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
             case 6:
                 readLine.close();
                 //Order Process
-                console.log("\nPreparing your order just wait...");
+                console.log("\nYour orders are preparing just wait...");
                 _i = 0, orders_1 = orders;
                 _c.label = 7;
             case 7:
@@ -131,8 +131,22 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                     price = menu[order.item].price;
                     totalItem = price * order.quantity;
                     total += totalItem;
-                    console.log("".concat(order.item, ": ").concat(price, "x").concat(order.quantity, " = ").concat(totalItem));
+                    console.log("".concat(order.item, ": ").concat(price, "Tk x").concat(order.quantity, " = ").concat(totalItem, "Tk"));
                 }
+                discount = 0;
+                if (total > 20) {
+                    discount = total * 0.1;
+                    console.log("You get discount: ".concat(discount.toFixed(2), "Tk"));
+                }
+                else {
+                    console.log("You not get any discount.");
+                }
+                finalAmount = 0;
+                finalAmount = total - discount;
+                console.log("Total Amount: ".concat(total.toFixed(2), "Tk"));
+                console.log("Final Amount: ".concat(finalAmount.toFixed(2), "Tk"));
+                console.log("You will pay: ".concat(finalAmount.toFixed(2), "Tk"));
+                console.log("---------Thank you---------");
                 return [2 /*return*/];
         }
     });

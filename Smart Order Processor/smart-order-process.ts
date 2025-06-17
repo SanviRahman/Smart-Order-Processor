@@ -17,10 +17,10 @@ type Order = {
 
 
 //Show Menu
-console.log("Menu:");
+console.log("---------------Menu:--------------");
 let index = 1;
 for (let item in menu) {
-  console.log(`${index}. ${item}: Price:${menu[item].price}`);
+  console.log(`${index}. ${item}: Price:${menu[item].price} TK`);
   index++;
 }
 
@@ -77,12 +77,13 @@ const mainProcess = async () => {
 
 
   //Order Process
-  console.log("\nPreparing your order just wait...");
+  console.log("\nYour orders are preparing just wait...");
   for(const order of orders){
     const orderPrice= order.quantity*500;
     const result=await prepareItem(order.item,orderPrice);
     console.log(`${result} and quantity: ${order.quantity}`);
   }
+
 
   //Order summary and total amount
   let total=0;
@@ -91,9 +92,28 @@ const mainProcess = async () => {
     const price= menu[order.item].price;
     const totalItem= price * order.quantity;
     total+=totalItem;
-    console.log(`${order.item}: ${price}x${order.quantity} = ${totalItem}`);
+    console.log(`${order.item}: ${price}Tk x${order.quantity} = ${totalItem}Tk`);
   }
 
+
+  //Discount
+  let discount=0;
+  if(total>20){
+    discount=total*0.1;
+    console.log(`You get discount: ${discount.toFixed(2)}Tk`);
+  }
+  else{
+    console.log("You not get any discount.");
+  }
+
+
+  //Total cost after discount
+  let finalAmount=0;
+  finalAmount=total-discount;
+  console.log(`Total Amount: ${total.toFixed(2)}Tk`);
+  console.log(`Final Amount: ${finalAmount.toFixed(2)}Tk`);
+  console.log(`You will pay: ${finalAmount.toFixed(2)}Tk`);
+  console.log("---------Thank you---------");
 }
 
 mainProcess();
