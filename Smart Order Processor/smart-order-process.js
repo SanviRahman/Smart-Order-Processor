@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var readline = require("readline");
+//Menu List
 var menu = {
     "burger": { price: 5 },
     "pizza": { price: 8 },
@@ -44,39 +45,107 @@ var menu = {
     "pasta": { price: 7 },
     "soda": { price: 2 }
 };
+//Show Menu
 console.log("Menu:");
 var index = 1;
 for (var item in menu) {
     console.log("".concat(index, ". ").concat(item, ": Price:").concat(menu[item].price));
     index++;
 }
+//Get input from user
 var readLine = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-var promise = function (question) {
+//ask() function question kore Promise return kore
+var ask = function (question) {
     return new Promise(function (resolve) { return readLine.question(question, resolve); });
 };
+//Prepared item
 var prepareItem = function (item, time) {
     return new Promise(function (resolve) {
         setTimeout(function () {
-            resolve("".concat(item, " is ready!"));
-        }, time);
+            resolve("".concat(item, " is ready"));
+        }, time = 2000);
     });
 };
-var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var order;
-    return __generator(this, function (_a) {
-        order = [];
-        return [2 /*return*/];
+// const main= async()=>{
+//   try{
+//     const response = await ('https://api.apis.guru/v2/list.json');
+//     const data= await response.json();
+//     console.log(data);
+//   }
+//   catch(err){
+//     console.log(err);
+//   }
+// }
+// main();
+//async arrow function
+var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalItem;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
+            case 0:
+                orders = [];
+                _a = parseInt;
+                return [4 /*yield*/, ask("How many different items you want to order:")];
+            case 1:
+                diffItems = _a.apply(void 0, [_c.sent()]);
+                i = 1;
+                _c.label = 2;
+            case 2:
+                if (!(i <= diffItems)) return [3 /*break*/, 6];
+                return [4 /*yield*/, ask("Enter item name: ".concat(i, "."))];
+            case 3:
+                item = _c.sent();
+                if (!menu[item]) {
+                    console.log("This item is not present in menu.Please try again!");
+                    i--;
+                    return [3 /*break*/, 5];
+                }
+                return [4 /*yield*/, ask("Your order item ".concat(item, " and quantity of ").concat(item, ":"))];
+            case 4:
+                quantity = _c.sent();
+                if (isNaN(quantity) || quantity < 0) {
+                    console.log("Invalid quantity.Please try again!");
+                    i--;
+                    return [3 /*break*/, 5];
+                }
+                orders.push({ item: item, quantity: quantity });
+                _c.label = 5;
+            case 5:
+                i++;
+                return [3 /*break*/, 2];
+            case 6:
+                readLine.close();
+                //Order Process
+                console.log("\nPreparing your order just wait...");
+                _i = 0, orders_1 = orders;
+                _c.label = 7;
+            case 7:
+                if (!(_i < orders_1.length)) return [3 /*break*/, 10];
+                order = orders_1[_i];
+                orderPrice = order.quantity * 500;
+                return [4 /*yield*/, prepareItem(order.item, orderPrice)];
+            case 8:
+                result = _c.sent();
+                console.log("".concat(result, " and quantity: ").concat(order.quantity));
+                _c.label = 9;
+            case 9:
+                _i++;
+                return [3 /*break*/, 7];
+            case 10:
+                total = 0;
+                console.log("\nOrder Summary:");
+                for (_b = 0, orders_2 = orders; _b < orders_2.length; _b++) {
+                    order = orders_2[_b];
+                    price = menu[order.item].price;
+                    totalItem = price * order.quantity;
+                    total += totalItem;
+                    console.log("".concat(order.item, ": ").concat(price, "x").concat(order.quantity, " = ").concat(totalItem));
+                }
+                return [2 /*return*/];
+        }
     });
 }); };
-var totalItems = parseInt(await ask("How many items you want to order?"));
-for (var i = 0; i < totalItems; i++) {
-    var item = await ask("Enter item name:".concat(i + 1));
-    if (!menu[item]) {
-        console.log("This item is not present in menu.Please try again!");
-        i--;
-        continue;
-    }
-}
+mainProcess();
