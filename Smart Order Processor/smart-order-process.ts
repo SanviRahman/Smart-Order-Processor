@@ -34,17 +34,17 @@ const readLine = readline.createInterface({
 
 
 //ask() function question kore Promise return kore
-const ask = (question: string): Promise<string> => {
+const ask = (question: string): Promise<any> => {
   return new Promise(resolve => readLine.question(question, resolve));
 };
 
 
 //Prepared item
-const prepareItem = (item: string, time: number): Promise<string> => {
+const prepareItem = (item: string, time: number): Promise<any> => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(`${item} is ready`);
-    }, time=2000);
+    }, time = 2000);
   });
 };
 
@@ -78,42 +78,42 @@ const mainProcess = async () => {
 
   //Order Process
   console.log("\nYour orders are preparing just wait...");
-  for(const order of orders){
-    const orderPrice= order.quantity*500;
-    const result=await prepareItem(order.item,orderPrice);
+  for (const order of orders) {
+    const orderPrice = order.quantity * 500;
+    const result = await prepareItem(order.item, orderPrice);
     console.log(`${result} and quantity: ${order.quantity}`);
   }
 
 
   //Order summary and total amount
-  let total=0;
+  let total = 0;
   console.log("\nOrder Summary:");
-  for(const order of orders){
-    const price= menu[order.item].price;
-    const totalItem= price * order.quantity;
-    total+=totalItem;
-    console.log(`${order.item}: ${price}Tk x${order.quantity} = ${totalItem}Tk`);
+  for (const order of orders) {
+    const price = menu[order.item].price;
+    const totalTaka = price * order.quantity;
+    total += totalTaka;
+    console.log(`${order.item}: ${price} Tk x${order.quantity} = ${totalTaka} Tk`);
   }
 
 
   //Discount
-  let discount=0;
-  if(total>20){
-    discount=total*0.1;
-    console.log(`You get discount: ${discount}Tk`);
+  let discount = 0;
+  if (total > 20) {
+    discount = total * 0.1;
+    console.log("You get discount: 10%");
   }
-  else{
+  else {
     console.log("You not get any discount.");
   }
 
 
   //Total cost after discount
-  let finalAmount=0;
-  finalAmount=total-discount;
-  console.log(`Total Amount: ${total}Tk`);
-  console.log(`Final Amount: ${finalAmount}Tk`);
-  console.log(`You will pay: ${finalAmount}Tk`);
-  console.log("---------Thank you---------");
+  let finalAmount = 0;
+  finalAmount = total - discount;
+  console.log(`Total Amount: ${total} Tk`);
+  console.log(`Final Amount: ${finalAmount} Tk`);
+  console.log(`You will pay: ${finalAmount} Tk`);
+  console.log("\n---------Thank you---------\n");
 }
 
 mainProcess();

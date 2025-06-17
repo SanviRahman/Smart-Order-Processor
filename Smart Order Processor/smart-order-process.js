@@ -71,7 +71,7 @@ var prepareItem = function (item, time) {
 };
 //async arrow function
 var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalItem, discount, finalAmount;
+    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalTaka, discount, finalAmount;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
@@ -129,24 +129,24 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 for (_b = 0, orders_2 = orders; _b < orders_2.length; _b++) {
                     order = orders_2[_b];
                     price = menu[order.item].price;
-                    totalItem = price * order.quantity;
-                    total += totalItem;
-                    console.log("".concat(order.item, ": ").concat(price, "Tk x").concat(order.quantity, " = ").concat(totalItem, "Tk"));
+                    totalTaka = price * order.quantity;
+                    total += totalTaka;
+                    console.log("".concat(order.item, ": ").concat(price, " Tk x").concat(order.quantity, " = ").concat(totalTaka, " Tk"));
                 }
                 discount = 0;
                 if (total > 20) {
                     discount = total * 0.1;
-                    console.log("You get discount: ".concat(discount, "Tk"));
+                    console.log("You get discount: 10%");
                 }
                 else {
                     console.log("You not get any discount.");
                 }
                 finalAmount = 0;
                 finalAmount = total - discount;
-                console.log("Total Amount: ".concat(total, "Tk"));
-                console.log("Final Amount: ".concat(finalAmount, "Tk"));
-                console.log("You will pay: ".concat(finalAmount, "Tk"));
-                console.log("---------Thank you---------");
+                console.log("Total Amount: ".concat(total, " Tk"));
+                console.log("Final Amount: ".concat(finalAmount, " Tk"));
+                console.log("You will pay: ".concat(finalAmount, " Tk"));
+                console.log("\n---------Thank you---------\n");
                 return [2 /*return*/];
         }
     });
