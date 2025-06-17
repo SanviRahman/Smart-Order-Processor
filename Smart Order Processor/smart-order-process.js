@@ -69,17 +69,6 @@ var prepareItem = function (item, time) {
         }, time = 2000);
     });
 };
-// const main= async()=>{
-//   try{
-//     const response = await ('https://api.apis.guru/v2/list.json');
-//     const data= await response.json();
-//     console.log(data);
-//   }
-//   catch(err){
-//     console.log(err);
-//   }
-// }
-// main();
 //async arrow function
 var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
     var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalItem;

@@ -49,19 +49,6 @@ const prepareItem = (item: string, time: number): Promise<string> => {
 };
 
 
-// const main= async()=>{
-//   try{
-//     const response = await ('https://api.apis.guru/v2/list.json');
-//     const data= await response.json();
-//     console.log(data);
-//   }
-//   catch(err){
-//     console.log(err);
-//   }
-// }
-
-// main();
-
 
 //async arrow function
 const mainProcess = async () => {
