@@ -136,16 +136,16 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 discount = 0;
                 if (total > 20) {
                     discount = total * 0.1;
-                    console.log("You get discount: ".concat(discount.toFixed(2), "Tk"));
+                    console.log("You get discount: ".concat(discount, "Tk"));
                 }
                 else {
                     console.log("You not get any discount.");
                 }
                 finalAmount = 0;
                 finalAmount = total - discount;
-                console.log("Total Amount: ".concat(total.toFixed(2), "Tk"));
-                console.log("Final Amount: ".concat(finalAmount.toFixed(2), "Tk"));
-                console.log("You will pay: ".concat(finalAmount.toFixed(2), "Tk"));
+                console.log("Total Amount: ".concat(total, "Tk"));
+                console.log("Final Amount: ".concat(finalAmount, "Tk"));
+                console.log("You will pay: ".concat(finalAmount, "Tk"));
                 console.log("---------Thank you---------");
                 return [2 /*return*/];
         }

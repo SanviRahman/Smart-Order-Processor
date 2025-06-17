@@ -100,7 +100,7 @@ const mainProcess = async () => {
   let discount=0;
   if(total>20){
     discount=total*0.1;
-    console.log(`You get discount: ${discount.toFixed(2)}Tk`);
+    console.log(`You get discount: ${discount}Tk`);
   }
   else{
     console.log("You not get any discount.");
@@ -110,9 +110,9 @@ const mainProcess = async () => {
   //Total cost after discount
   let finalAmount=0;
   finalAmount=total-discount;
-  console.log(`Total Amount: ${total.toFixed(2)}Tk`);
-  console.log(`Final Amount: ${finalAmount.toFixed(2)}Tk`);
-  console.log(`You will pay: ${finalAmount.toFixed(2)}Tk`);
+  console.log(`Total Amount: ${total}Tk`);
+  console.log(`Final Amount: ${finalAmount}Tk`);
+  console.log(`You will pay: ${finalAmount}Tk`);
   console.log("---------Thank you---------");
 }
 
