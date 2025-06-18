@@ -147,7 +147,7 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 discount = 0;
                 if (total > 20) {
                     discount = total * 0.1;
-                    console.log("You get discount: 10% => ".concat(discount, " tk"));
+                    console.log("You get discount: 10% => ".concat(discount.toFixed(2), " tk"));
                 }
                 else {
                     console.log("You not get any discount.");
@@ -155,8 +155,8 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 finalAmount = 0;
                 finalAmount = total - discount;
                 console.log("Total Amount: ".concat(total, " Tk"));
-                console.log("Final Amount: ".concat(finalAmount, " Tk"));
-                console.log("You will pay: ".concat(finalAmount, " Tk"));
+                console.log("Final Amount: ".concat(finalAmount.toFixed(2), " Tk"));
+                console.log("You will pay: ".concat(finalAmount.toFixed(2), " Tk"));
                 console.log("\n---------Thank you---------\n");
                 return [2 /*return*/];
         }
