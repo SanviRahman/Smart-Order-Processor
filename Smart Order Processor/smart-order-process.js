@@ -76,54 +76,65 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
         switch (_c.label) {
             case 0:
                 orders = [];
+                _c.label = 1;
+            case 1:
+                if (!true) return [3 /*break*/, 3];
                 _a = parseInt;
                 return [4 /*yield*/, ask("How many different items you want to order:")];
-            case 1:
-                diffItems = _a.apply(void 0, [_c.sent()]);
-                i = 1;
-                _c.label = 2;
             case 2:
-                if (!(i <= diffItems)) return [3 /*break*/, 6];
-                return [4 /*yield*/, ask("Enter item name: ".concat(i, "."))];
+                diffItems = _a.apply(void 0, [_c.sent()]);
+                if (isNaN(diffItems) || diffItems < 1) {
+                    console.log("Enter valid number. Please try again!");
+                }
+                else {
+                    return [3 /*break*/, 3];
+                }
+                return [3 /*break*/, 1];
             case 3:
+                i = 1;
+                _c.label = 4;
+            case 4:
+                if (!(i <= diffItems)) return [3 /*break*/, 8];
+                return [4 /*yield*/, ask("Enter item name: ".concat(i, "."))];
+            case 5:
                 item = _c.sent();
                 if (!menu[item]) {
                     console.log("This item is not present in menu.Please try again!");
                     i--;
-                    return [3 /*break*/, 5];
+                    return [3 /*break*/, 7];
                 }
                 return [4 /*yield*/, ask("Your order item ".concat(item, " and quantity of ").concat(item, ":"))];
-            case 4:
+            case 6:
                 quantity = _c.sent();
-                if (quantity <= 0) {
+                if (isNaN(quantity) || quantity < 1) {
                     console.log("Invalid quantity.Please try again!");
                     i--;
-                    return [3 /*break*/, 5];
+                    return [3 /*break*/, 7];
                 }
                 orders.push({ item: item, quantity: quantity });
-                _c.label = 5;
-            case 5:
+                _c.label = 7;
+            case 7:
                 i++;
-                return [3 /*break*/, 2];
-            case 6:
+                return [3 /*break*/, 4];
+            case 8:
                 readLine.close();
                 //Order Process
                 console.log("\nYour orders are preparing just wait...");
                 _i = 0, orders_1 = orders;
-                _c.label = 7;
-            case 7:
-                if (!(_i < orders_1.length)) return [3 /*break*/, 10];
+                _c.label = 9;
+            case 9:
+                if (!(_i < orders_1.length)) return [3 /*break*/, 12];
                 order = orders_1[_i];
                 orderPrice = order.quantity * 500;
                 return [4 /*yield*/, prepareItem(order.item, orderPrice)];
-            case 8:
+            case 10:
                 orderItem = _c.sent();
                 console.log("".concat(orderItem, " and quantity: ").concat(order.quantity));
-                _c.label = 9;
-            case 9:
+                _c.label = 11;
+            case 11:
                 _i++;
-                return [3 /*break*/, 7];
-            case 10:
+                return [3 /*break*/, 9];
+            case 12:
                 total = 0;
                 console.log("\nOrder Summary:");
                 for (_b = 0, orders_2 = orders; _b < orders_2.length; _b++) {

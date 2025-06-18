@@ -34,17 +34,17 @@ const readLine = readline.createInterface({
 
 
 //ask() function question kore Promise return kore,arrow function
-const ask = (question: string):Promise<any>=> {
+const ask = (question: string): Promise<any> => {
   return new Promise(resolve => readLine.question(question, resolve));
 };
 
 
 //Prepared item,arrow function 
-const prepareItem = (item: string, price: number)=> {
-  return new Promise(resolve =>{
-    setTimeout(()=>{
+const prepareItem = (item: string, price: number) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
       resolve(`${item} is ready`);
-    },2000)
+    }, 2000)
   })
 };
 
@@ -54,8 +54,19 @@ const prepareItem = (item: string, price: number)=> {
 const mainProcess = async () => {
   const orders: Order[] = [];
 
+
   //Order from user
-  const diffItems = parseInt(await ask("How many different items you want to order:"));
+  let diffItems: number;
+  while (true) {
+    diffItems = parseInt(await ask("How many different items you want to order:"));
+    if (isNaN(diffItems) || diffItems < 1) {
+      console.log("Enter valid number. Please try again!");
+    }
+    else {
+      break;
+    }
+  }
+
   for (let i = 1; i <= diffItems; i++) {
     const item = await ask(`Enter item name: ${i}.`);
     if (!menu[item]) {
@@ -65,7 +76,7 @@ const mainProcess = async () => {
     }
 
     const quantity: any = await ask(`Your order item ${item} and quantity of ${item}:`);
-    if (quantity <= 0) {
+    if (isNaN(quantity) || quantity < 1) {
       console.log("Invalid quantity.Please try again!");
       i--;
       continue;
