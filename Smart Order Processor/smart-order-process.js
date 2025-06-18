@@ -52,26 +52,26 @@ for (var item in menu) {
     console.log("".concat(index, ". ").concat(item, ": Price:").concat(menu[item].price, " TK"));
     index++;
 }
-//Get input from user
+//Get input from user using interface
 var readLine = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-//ask() function question kore Promise return kore
+//ask() function question kore Promise return kore,arrow function
 var ask = function (question) {
     return new Promise(function (resolve) { return readLine.question(question, resolve); });
 };
-//Prepared item
-var prepareItem = function (item, time) {
+//Prepared item,arrow function 
+var prepareItem = function (item, price) {
     return new Promise(function (resolve) {
         setTimeout(function () {
             resolve("".concat(item, " is ready"));
-        }, time = 2000);
+        }, 2000);
     });
 };
-//async arrow function
+//async arrow annonmous function
 var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, result, total, _b, orders_2, order, price, totalTaka, discount, finalAmount;
+    var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, orderItem, total, _b, orders_2, order, price, totalTaka, discount, finalAmount;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
@@ -95,7 +95,7 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 return [4 /*yield*/, ask("Your order item ".concat(item, " and quantity of ").concat(item, ":"))];
             case 4:
                 quantity = _c.sent();
-                if (isNaN(quantity) || quantity < 0) {
+                if (quantity <= 0) {
                     console.log("Invalid quantity.Please try again!");
                     i--;
                     return [3 /*break*/, 5];
@@ -117,8 +117,8 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 orderPrice = order.quantity * 500;
                 return [4 /*yield*/, prepareItem(order.item, orderPrice)];
             case 8:
-                result = _c.sent();
-                console.log("".concat(result, " and quantity: ").concat(order.quantity));
+                orderItem = _c.sent();
+                console.log("".concat(orderItem, " and quantity: ").concat(order.quantity));
                 _c.label = 9;
             case 9:
                 _i++;
@@ -136,7 +136,7 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
                 discount = 0;
                 if (total > 20) {
                     discount = total * 0.1;
-                    console.log("You get discount: 10%");
+                    console.log("You get discount: 10% => ".concat(discount, " tk"));
                 }
                 else {
                     console.log("You not get any discount.");

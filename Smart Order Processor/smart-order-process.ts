@@ -26,31 +26,31 @@ for (let item in menu) {
 
 
 
-//Get input from user
+//Get input from user using interface
 const readLine = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 
-//ask() function question kore Promise return kore
-const ask = (question: string): Promise<any> => {
+//ask() function question kore Promise return kore,arrow function
+const ask = (question: string):Promise<any>=> {
   return new Promise(resolve => readLine.question(question, resolve));
 };
 
 
-//Prepared item
-const prepareItem = (item: string, time: number): Promise<any> => {
-  return new Promise(resolve => {
-    setTimeout(() => {
+//Prepared item,arrow function 
+const prepareItem = (item: string, price: number)=> {
+  return new Promise(resolve =>{
+    setTimeout(()=>{
       resolve(`${item} is ready`);
-    }, time = 2000);
-  });
+    },2000)
+  })
 };
 
 
 
-//async arrow function
+//async arrow annonmous function
 const mainProcess = async () => {
   const orders: Order[] = [];
 
@@ -65,7 +65,7 @@ const mainProcess = async () => {
     }
 
     const quantity: any = await ask(`Your order item ${item} and quantity of ${item}:`);
-    if (isNaN(quantity) || quantity < 0) {
+    if (quantity <= 0) {
       console.log("Invalid quantity.Please try again!");
       i--;
       continue;
@@ -80,8 +80,8 @@ const mainProcess = async () => {
   console.log("\nYour orders are preparing just wait...");
   for (const order of orders) {
     const orderPrice = order.quantity * 500;
-    const result = await prepareItem(order.item, orderPrice);
-    console.log(`${result} and quantity: ${order.quantity}`);
+    const orderItem = await prepareItem(order.item, orderPrice);//Pepared order
+    console.log(`${orderItem} and quantity: ${order.quantity}`);
   }
 
 
@@ -89,7 +89,7 @@ const mainProcess = async () => {
   let total = 0;
   console.log("\nOrder Summary:");
   for (const order of orders) {
-    const price = menu[order.item].price;
+    const price = menu[order.item].price;//count per item price
     const totalTaka = price * order.quantity;
     total += totalTaka;
     console.log(`${order.item}: ${price} Tk x${order.quantity} = ${totalTaka} Tk`);
@@ -100,7 +100,7 @@ const mainProcess = async () => {
   let discount = 0;
   if (total > 20) {
     discount = total * 0.1;
-    console.log("You get discount: 10%");
+    console.log(`You get discount: 10% => ${discount} tk`);
   }
   else {
     console.log("You not get any discount.");
