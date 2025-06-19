@@ -59,7 +59,7 @@ const mainProcess = async () => {
   let diffItems: number;
   while (true) {
     diffItems = parseInt(await ask("\nHow many different items you want to order:"));
-    if (isNaN(diffItems) || diffItems < 1) {
+    if (diffItems < 1) {
       console.log("Enter valid number. Please try again!");
     }
     else {
@@ -76,7 +76,7 @@ const mainProcess = async () => {
     }
 
     const quantity: any = await ask(`Your order item ${item} and quantity of ${item}:`);
-    if (isNaN(quantity) || quantity < 1) {
+    if (quantity < 1) {
       console.log("Invalid quantity.Please try again!");
       i--;
       continue;
