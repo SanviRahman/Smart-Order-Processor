@@ -61,7 +61,7 @@ var readLine = readline.createInterface({
 var ask = function (question) {
     return new Promise(function (resolve) { return readLine.question(question, resolve); });
 };
-//Prepared item,arrow function 
+//Prepared item, arrow , annonymous function 
 var prepareItem = function (item, price) {
     return new Promise(function (resolve) {
         setTimeout(function () {
@@ -69,7 +69,7 @@ var prepareItem = function (item, price) {
         }, 2000);
     });
 };
-//async arrow annonmous function
+//async, arrow, annonmous function
 var mainProcess = function () { return __awaiter(void 0, void 0, void 0, function () {
     var orders, diffItems, _a, i, item, quantity, _i, orders_1, order, orderPrice, orderItem, total, _b, orders_2, order, price, totalTaka, discount, finalAmount;
     return __generator(this, function (_c) {
@@ -80,7 +80,7 @@ var mainProcess = function () { return __awaiter(void 0, void 0, void 0, functio
             case 1:
                 if (!true) return [3 /*break*/, 3];
                 _a = parseInt;
-                return [4 /*yield*/, ask("How many different items you want to order:")];
+                return [4 /*yield*/, ask("\nHow many different items you want to order:")];
             case 2:
                 diffItems = _a.apply(void 0, [_c.sent()]);
                 if (isNaN(diffItems) || diffItems < 1) {

@@ -39,7 +39,7 @@ const ask = (question: string): Promise<any> => {
 };
 
 
-//Prepared item,arrow function 
+//Prepared item, arrow , annonymous function 
 const prepareItem = (item: string, price: number) => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -50,7 +50,7 @@ const prepareItem = (item: string, price: number) => {
 
 
 
-//async arrow annonmous function
+//async, arrow, annonmous function
 const mainProcess = async () => {
   const orders: Order[] = [];
 
@@ -58,7 +58,7 @@ const mainProcess = async () => {
   //Order from user
   let diffItems: number;
   while (true) {
-    diffItems = parseInt(await ask("How many different items you want to order:"));
+    diffItems = parseInt(await ask("\nHow many different items you want to order:"));
     if (isNaN(diffItems) || diffItems < 1) {
       console.log("Enter valid number. Please try again!");
     }
